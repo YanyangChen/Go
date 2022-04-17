@@ -344,7 +344,21 @@ Ish.Go.View = new function() {
 	this.recall = function(backIndx){
 		gGameState.recall(backIndx);
 		this.drawBoard();
-		this.boardHistory = [];
+		//this.boardHistory = [];
 	}
-	
+
+	this.nextCall = function(Indx){
+		gGameState.nextCall(Indx);
+		this.drawBoard();
+		//this.boardHistory = [];
+	}
+
+	this.printDescription = function(){
+		console.log("h5 step : " + gGameState.currentStep)
+		console.log(gGameState.boardHistoryRecord[gGameState.currentStep-1][19])
+	}
+
+	this.setDescription = function(input){
+		gGameState.boardHistory[gGameState.boardHistory.length-1][19] = input;
+	}	
 }; // end Ish.Go.View namespace

@@ -122,9 +122,11 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 			this.board[i][j] = Constants.PointState.EMPTY;
 		}
 	}
+	this.board.push("description : ")
 	
 	this.previousBoard = $.extend(true, [], this.board);	
 	this.boardHistory = [];
+	this.boardHistoryRecord = [];
 	this.player1 = player1;
 	this.player2 = player2;	
 	this.currentPlayer = player1;	
@@ -155,20 +157,38 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 		this.board = $.extend(true, [], board);
 	};
 	this.recall = function(backIndx){
-		this.currestStep = gGameState.boardHistory.length - backIndx;
 		
-		gGameState.setBoardCopy(gGameState.boardHistory.at(this.currestStep));
-		for (var x = 1; x <= backIndx; x++) {
-			gGameState.boardHistory.pop(this.currestStep)
-		}
-		if (this.currestStep % 2 === 0){
+		this.currentStep = this.currentStep - backIndx;
+		
+		gGameState.setBoardCopy(gGameState.boardHistoryRecord.at(this.currentStep));
+		// for (var x = 1; x <= backIndx; x++) {
+		// 	gGameState.boardHistory.pop(this.currentStep)
+		// }
+		this.decidePlayer(this.currentStep);
+		console.log("recall this.currentStep : " + this.currentStep);
+		console.log("recall this.currentPlayer : " + this.currentPlayer);
+	}
+
+	this.nextCall = function(nextIndex){
+		this.currentStep += nextIndex;
+		console.log("nextCall this.currentStep : " + this.currentStep);
+		//gGameState.boardHistory = gGameState.boardHistoryRecord;
+		
+		gGameState.setBoardCopy(gGameState.boardHistoryRecord.at(this.currentStep));
+		
+		this.decidePlayer(this.currentStep);
+		
+		console.log("nextCall this.currentPlayer : " + this.currentPlayer);
+	}
+
+	this.decidePlayer = function(step){
+		if (step % 2 === 0){
 			this.currentPlayer = player1;
 		}
 		else {
 			this.currentPlayer = player2;	
 		}
-		console.log("this.currestStep : " + this.currestStep);
-		console.log("this.currentPlayer : " + this.currentPlayer);
+		
 	}
 };
 

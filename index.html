@@ -8,9 +8,38 @@
 	<script src="ish.go.logic.js"></script>
 	<script src="ish.go.view.h5.js"></script>
 	<script>
+		function setDesc() {
+			let text;
+			let desc = prompt("Please enter your desc:", "Harry Potter");
+			if (desc == null || desc == "") {
+				text = "User cancelled the prompt.";
+			} else {
+				//set description
+				Ish.Go.View.setDescription(desc);
+				//push current step to history
+				//gGameState.boardHistory.push(gGameState.getBoardCopy);
+				//console log for copy and paste
+				console.log(gGameState.boardHistory);
+			}
+			};
+
 		$(document).keypress(function(e){
-		if (e.which == 32){
+
+		//left 'arrow' (lesser than)
+		if (e.which == 60){
 			Ish.Go.View.recall(1);
+		}
+		//right 'arrow' (greater than)
+		if (e.which == 62){
+			Ish.Go.View.nextCall(1);
+		}
+		//p
+		if (e.which == 112){
+			Ish.Go.View.printDescription();
+		}
+		//s
+		if (e.which == 115){
+			setDesc();
 		}
 		});
 	</script>
@@ -91,8 +120,16 @@
 			var newArr = JSON.parse(lines); 
 			console.log(newArr);
 			gGameState.boardHistory = newArr;
+			gGameState.boardHistoryRecord = newArr;
+			gGameState.currentStep = gGameState.boardHistory.length;
+			//gGameState.setBoardCopy(gGameState.boardHistory[gGameState.boardHistory.length-1]);
+			//Ish.Go.View.drawBoard();
 			Ish.Go.View.recall(1)
+			gGameState.decidePlayer(gGameState.currentStep);
 		  }
+
+		  
+
 		}
 	  </script>
 	  
