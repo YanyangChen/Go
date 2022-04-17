@@ -365,8 +365,8 @@ Ish.Go.View = new function() {
 	}
 
 	this.printDescription = function(){
-		console.log("h5 step : " + gGameState.currentStep)
-		console.log(gGameState.boardHistoryRecord[gGameState.currentStep-1][19])
+		console.log("current step : " + gGameState.currentStep)
+		console.log("step desc: " + gGameState.boardHistory[gGameState.currentStep-1][19])
 	}
 
 	this.setDescription = function(input){

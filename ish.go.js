@@ -191,6 +191,7 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 		this.decidePlayer(this.currentStep);
 		console.log("recall this.currentStep : " + this.currentStep);
 		console.log("recall this.currentPlayer : " + this.currentPlayer);
+		
 	}
 
 	this.bnextCall = function(nextIndex){
@@ -203,6 +204,7 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 		this.decidePlayer(this.currentStep);
 		
 		console.log("nextCall this.currentPlayer : " + this.currentPlayer);
+		
 	}
 
 	this.decidePlayer = function(step){
@@ -214,6 +216,8 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 		}
 		
 	}
+	
+	
 };
 
 //gGameState.setBoardCopy(gGameState.previousBoard)
