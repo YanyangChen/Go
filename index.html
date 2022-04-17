@@ -24,7 +24,14 @@
 			};
 
 		$(document).keypress(function(e){
-
+			
+		if (e.which == 44){
+			Ish.Go.View.brecall(1);
+		}
+		//right 'arrow' (greater than)
+		if (e.which == 46){
+			Ish.Go.View.bnextCall(1);
+		}
 		//left 'arrow' (lesser than)
 		if (e.which == 60){
 			Ish.Go.View.recall(1);
@@ -89,7 +96,7 @@
 	  
 	  
 	  <script type="text/javascript">
-	  
+	  //https://stackoverflow.com/questions/7346563/loading-local-json-file
 		function loadFile() {
 		  var input, file, fr;
 	  

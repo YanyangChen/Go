@@ -180,6 +180,30 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 		
 		console.log("nextCall this.currentPlayer : " + this.currentPlayer);
 	}
+	this.brecall = function(backIndx){
+		
+		this.currentStep = this.currentStep - backIndx;
+		
+		gGameState.setBoardCopy(gGameState.boardHistory.at(this.currentStep));
+		// for (var x = 1; x <= backIndx; x++) {
+		// 	gGameState.boardHistory.pop(this.currentStep)
+		// }
+		this.decidePlayer(this.currentStep);
+		console.log("recall this.currentStep : " + this.currentStep);
+		console.log("recall this.currentPlayer : " + this.currentPlayer);
+	}
+
+	this.bnextCall = function(nextIndex){
+		this.currentStep += nextIndex;
+		console.log("nextCall this.currentStep : " + this.currentStep);
+		//gGameState.boardHistory = gGameState.boardHistoryRecord;
+		
+		gGameState.setBoardCopy(gGameState.boardHistory.at(this.currentStep));
+		
+		this.decidePlayer(this.currentStep);
+		
+		console.log("nextCall this.currentPlayer : " + this.currentPlayer);
+	}
 
 	this.decidePlayer = function(step){
 		if (step % 2 === 0){

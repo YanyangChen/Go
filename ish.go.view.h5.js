@@ -352,6 +352,17 @@ Ish.Go.View = new function() {
 		this.drawBoard();
 		//this.boardHistory = [];
 	}
+	this.brecall = function(backIndx){
+		gGameState.brecall(backIndx);
+		this.drawBoard();
+		//this.boardHistory = [];
+	}
+
+	this.bnextCall = function(Indx){
+		gGameState.bnextCall(Indx);
+		this.drawBoard();
+		//this.boardHistory = [];
+	}
 
 	this.printDescription = function(){
 		console.log("h5 step : " + gGameState.currentStep)
