@@ -340,5 +340,11 @@ Ish.Go.View = new function() {
 		
 		this.redraw();
 	};
+
+	this.recall = function(backIndx){
+		gGameState.recall(backIndx);
+		this.drawBoard();
+		this.boardHistory = [];
+	}
 	
 }; // end Ish.Go.View namespace

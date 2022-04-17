@@ -241,7 +241,7 @@ Ish.Go.Logic = new function() {
         
         // Clear previous move errors
         gGameState.moveError = "";
-
+		gGameState.currentStep += 1;
 		// Validate move
 		if (!this.isValidMove(point, player)) {
 			return null;
@@ -249,7 +249,7 @@ Ish.Go.Logic = new function() {
 		
 		// Store previous board
 		gGameState.previousBoard = gGameState.getBoardCopy();
-		
+		gGameState.boardHistory.push(gGameState.getBoardCopy());
 		// Place piece
 		gGameState.setPointStateAt(point, player.pointState);
 		

@@ -113,7 +113,7 @@ function Player(color, pointState, score) {
 function GameState(boardWidth, boardHeight, player1, player2, status) {	
 	this.boardWidth = boardWidth;
 	this.boardHeight = boardHeight;
-	
+	this.currentStep = 0;
 	// Initialize board
 	this.board = new Array(this.boardHeight);	
 	for (var i = 0; i < this.boardHeight; i++) {
@@ -124,6 +124,7 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 	}
 	
 	this.previousBoard = $.extend(true, [], this.board);	
+	this.boardHistory = [];
 	this.player1 = player1;
 	this.player2 = player2;	
 	this.currentPlayer = player1;	
@@ -153,4 +154,23 @@ function GameState(boardWidth, boardHeight, player1, player2, status) {
 	this.setBoardCopy = function(board) {
 		this.board = $.extend(true, [], board);
 	};
+	this.recall = function(backIndx){
+		this.currestStep = gGameState.boardHistory.length - backIndx;
+		
+		gGameState.setBoardCopy(gGameState.boardHistory.at(this.currestStep));
+		for (var x = 1; x <= backIndx; x++) {
+			gGameState.boardHistory.pop(this.currestStep)
+		}
+		if (this.currestStep % 2 === 0){
+			this.currentPlayer = player1;
+		}
+		else {
+			this.currentPlayer = player2;	
+		}
+		console.log("this.currestStep : " + this.currestStep);
+		console.log("this.currentPlayer : " + this.currentPlayer);
+	}
 };
+
+//gGameState.setBoardCopy(gGameState.previousBoard)
+//Ish.Go.View.drawBoard()
