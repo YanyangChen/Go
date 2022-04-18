@@ -1,4 +1,5 @@
 // Ish.Go namespace declaration
+//http://gokifu.com/
 var Ish = Ish || {};
 Ish.Go = Ish.Go || {};
 

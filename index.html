@@ -8,9 +8,18 @@
 	<script src="ish.go.logic.js"></script>
 	<script src="ish.go.view.h5.js"></script>
 	<script>
+
+		function deleteAfter(index){
+			for (i = index; i<gGameState.boardHistory.length; i++)
+			{
+			gGameState.boardHistoryRecord.pop(); 
+			gGameState.boardHistory.pop();
+			}
+		}
+
 		function setDesc() {
 			let text;
-			let desc = prompt("Please enter your desc:", "Harry Potter");
+			let desc = prompt("Please enter your desc:", "");
 			if (desc == null || desc == "") {
 				text = "User cancelled the prompt.";
 			} else {
